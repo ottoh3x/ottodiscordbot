@@ -5,7 +5,7 @@ import time
 
 
 bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo",
-                       default_enabled_guilds=(867864188545531929, 934581952118403142))
+                       default_enabled_guilds=(867864188545531929, 934581952118403142, 929699967143116851))
 
 
 @bot.command()
