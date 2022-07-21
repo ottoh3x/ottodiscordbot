@@ -1,5 +1,5 @@
-hiraki-lightbulb
-hiraki
+hikari-lightbulb
+hikari
 requests
 unicorn
 uvicorn
