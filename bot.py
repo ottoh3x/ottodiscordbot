@@ -9,8 +9,26 @@ bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4
 
 
 @bot.command()
+@lightbulb.option(f"city", 'ur city')
+@lightbulb.command('weather', 'it gives u details abt the weather')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def weather(ctx):
+    url = f"http://api.weatherapi.com/v1/current.json?key=d0f6ff5c4eaa40b0b94195841222207&q={ctx.options.city}&aqi=no"
+    d = requests.get(url).text
+    data = json.loads(d)
+    citi = data['location']['name']
+    region = data['location']['region']
+    country = data['location']['country']
+    time = data['location']['localtime']
+    temp = data['current']['temp_c']
+    condition = data['current']['condition']['text']
+
+    await ctx.respond(f"**Temperature**: {temp} °\n**Condition**: {condition}\n**City**: {citi}\n**Country**: {country}\n**Region**: {region}\n**Time**: {time}")
+
+
+@bot.command()
 @lightbulb.command('ping', 'Pong')
-@lightbulb.implements(lightbulb.PrefixCommand)
+@lightbulb.implements(lightbulb.SlashCommand)
 async def ping(ctx):
     before = time.monotonic()
     message = await ctx.respond("Pong!")
@@ -32,7 +50,7 @@ async def online(ctx):
     megasplit1currentplayers = r[27]['currentPlayers']
     megasplit1region = r[27]['region']
 
-    await ctx.respond(f"**FFA1**: {ffa1currentplayers}/70 Current Players | **Region**: {ffa1region}\n**FFA2**: {ffa2currentplayers}/50 Current Players | **Region**: {ffa2region}\n**MegaSplit 1**: {megasplit1currentplayers}/60 Current Players | **Region**: {megasplit1region}")
+    await ctx.respond(f"**FFA1**: {ffa1currentplayers}/70 Current Players\n**FFA2**: {ffa2currentplayers}/50 Current Players \n**MegaSplit 1**: {megasplit1currentplayers}/60 Current Players")
 
 
 @bot.command()
