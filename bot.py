@@ -3,6 +3,7 @@ import requests
 import json
 import time
 from bs4 import BeautifulSoup
+import socket
 
 bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo"
                        )
@@ -42,6 +43,16 @@ async def ping(ctx):
 async def commands(ctx):
     return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).\n**/joke** : get a random meme :D.')
    
+
+@bot.command()
+@lightbulb.command('gotcha', 'fun trick')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ip(ctx):
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
+    return await ctx.respond(f"**Hostname:** {hostname} ,"f"**IP Address:** {ip_address}")
+
+
 
 @bot.command()
 @lightbulb.command('joke', 'get a random joke')
