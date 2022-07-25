@@ -40,7 +40,7 @@ async def ping(ctx):
 @lightbulb.command('commands', 'commands')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def commands(ctx):
-    return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).')
+    return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).\n**/joke** : get a random meme :D.')
    
 
 @bot.command()
@@ -52,6 +52,14 @@ async def joke(ctx):
     soup = BeautifulSoup(r,"html.parser")
     joke = soup.find("p","subtitle").text
     return await ctx.respond(joke)
+
+@bot.command()
+@lightbulb.command('meme', 'get a random meme')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def meme(ctx):
+    url="https://meme-api.herokuapp.com/gimme"
+    r = requests.get(url).json()['url']
+    return await ctx.respond(r)
 
 @bot.command()
 @lightbulb.command('online', 'online players')
