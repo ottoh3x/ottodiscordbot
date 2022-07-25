@@ -37,6 +37,14 @@ async def ping(ctx):
 
 
 @bot.command()
+@lightbulb.command('commands', 'commands')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def commands(ctx):
+    return await ctx.respond('**Commands**:\n/anime <title> ==> get anime details make sure to spell the name correctly and use "-" instead of space.\n/weather <city>\n/online ==> check how many players are on in the worst ball game ever\n/ping')
+   
+
+
+@bot.command()
 @lightbulb.command('online', 'online players')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def online(ctx):
