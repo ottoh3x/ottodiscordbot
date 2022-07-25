@@ -4,8 +4,8 @@ import json
 import time
 
 
-bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo",
-                       default_enabled_guilds=(867864188545531929, 934581952118403142, 929699967143116851))
+bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo"
+                       )
 
 
 @bot.command()
@@ -40,7 +40,7 @@ async def ping(ctx):
 @lightbulb.command('commands', 'commands')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def commands(ctx):
-    return await ctx.respond('**Commands**:\n/anime <title> ==> get anime details make sure to spell the name correctly and use "-" instead of space.\n/weather <city>\n/online ==> check how many players are on in the worst ball game ever\n/ping')
+    return await ctx.respond('**Commands**:\n/anime <title> : get anime details make sure to spell the name correctly and use "-" instead of space.\n/weather <city>\n/online : check how many players are on in the worst ball game ever\n/ping')
    
 
 
