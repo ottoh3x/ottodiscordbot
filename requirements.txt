@@ -3,3 +3,4 @@ hikari
 requests
 unicorn
 uvicorn
+bs4

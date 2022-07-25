@@ -43,6 +43,17 @@ async def commands(ctx):
     return await ctx.respond('**Commands**:\n/anime <title> : get anime details make sure to spell the name correctly and use "-" instead of space.\n/weather <city>\n/online : check how many players are on in the worst ball game ever\n/ping')
    
 
+@bot.command()
+@lightbulb.command('joke', 'get a random joke')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def joke(ctx):
+    headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0', 'Accept': 'text/plain; charset=utf-8'}
+
+    url="https://icanhazdadjoke.com"
+    r = requests.get(url,headers=headers).text
+    soup = BeautifulSoup(r,"html.parser")
+    joke = soup.find("p","subtitle").text
+    return await ctx.respond(joke)
 
 @bot.command()
 @lightbulb.command('online', 'online players')
