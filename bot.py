@@ -75,7 +75,18 @@ skins = ["https://skins.vanis.io/s/e8dH91",
 "https://skins.vanis.io/s/9RtCCt",
 "https://skins.vanis.io/s/J6zmMD",
 "https://skins.vanis.io/s/P8dJpU",
-"https://skins.vanis.io/s/NhI6vT"]
+"https://skins.vanis.io/s/NhI6vT",
+"https://skins.vanis.io/s/fKtn0g",
+"https://skins.vanis.io/s/JPNcoq",
+"https://skins.vanis.io/s/BTqyzQ",
+"https://skins.vanis.io/s/bi3dwd",
+"https://skins.vanis.io/s/YSHjyP",
+"https://skins.vanis.io/s/ntVbqS",
+"https://skins.vanis.io/s/VrZibI",
+"https://skins.vanis.io/s/eMIFoe",
+"https://skins.vanis.io/s/Nz1qdn",
+"https://skins.vanis.io/s/tXeO4I",
+"https://skins.vanis.io/s/KC8IsS"]
 
 bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo",prefix="otto"
                        )
