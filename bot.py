@@ -120,7 +120,7 @@ async def skin(ctx):
 @lightbulb.command('commands', 'commands')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def commands(ctx):
-    return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).\n**/joke** : get a random meme :D.\n**/skin**: it returns a random vanis skin')
+    return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).\n**/meme** : get a random meme :D.\n**/skin**: it returns a random vanis skin')
    
 
 @bot.command()
