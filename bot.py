@@ -77,14 +77,14 @@ skins = ["https://skins.vanis.io/s/e8dH91",
 "https://skins.vanis.io/s/P8dJpU",
 "https://skins.vanis.io/s/NhI6vT"]
 
-bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo"
+bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo",prefix="otto"
                        )
 
 
 @bot.command()
 @lightbulb.option(f"city", 'ur city')
 @lightbulb.command('weather', 'it gives u details abt the weather')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def weather(ctx):
     url = f"http://api.weatherapi.com/v1/current.json?key=d0f6ff5c4eaa40b0b94195841222207&q={ctx.options.city}&aqi=no"
     d = requests.get(url).text
@@ -101,7 +101,7 @@ async def weather(ctx):
 
 @bot.command()
 @lightbulb.command('ping', 'Pong')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def ping(ctx):
     before = time.monotonic()
     message = await ctx.respond("Pong!")
@@ -110,7 +110,7 @@ async def ping(ctx):
 
 @bot.command()
 @lightbulb.command('skin', 'Returns a vanis skin.')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def skin(ctx):
     skin = random.choice(skins)
     return await ctx.respond(f"- {skin}")
@@ -118,14 +118,14 @@ async def skin(ctx):
 
 @bot.command()
 @lightbulb.command('commands', 'commands')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def commands(ctx):
-    return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).\n**/meme** : get a random meme :D.\n**/skin**: it returns a random vanis skin')
+    return await ctx.respond('**Commands**: **NB**:Add otto before the command.\n**anime <title>** ► get anime details make sure to spell the name correctly and use "-" instead of space.\n**weather <city>** ► it gives u the temperature in your city.\n**online** ► check how many players are on in the worst ball game ever\n**ping**\n**joke** ► get a random joke :).\n**meme** ► get a random meme D.\n**skin** ► it returns a random vanis skin')
    
 
 @bot.command()
 @lightbulb.command('gotch', 'fun trick')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def gotch(ctx):
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
@@ -135,7 +135,7 @@ async def gotch(ctx):
 
 @bot.command()
 @lightbulb.command('joke', 'get a random joke')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def joke(ctx):
     url="https://icanhazdadjoke.com"
     r = requests.get(url).text
@@ -145,7 +145,7 @@ async def joke(ctx):
 
 @bot.command()
 @lightbulb.command('meme', 'get a random meme')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def meme(ctx):
     url="https://meme-api.herokuapp.com/gimme"
     r = requests.get(url).json()['url']
@@ -153,7 +153,7 @@ async def meme(ctx):
 
 @bot.command()
 @lightbulb.command('online', 'online players')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def online(ctx):
 
     url = f'https://vanis.io/gameservers.json'
@@ -171,7 +171,7 @@ async def online(ctx):
 @bot.command()
 @lightbulb.option(f"title", 'anime title')
 @lightbulb.command('anime', 'anime details')
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand)
 async def anime(ctx):
     url = f'https://ottogo.vercel.app/api/details/{ctx.options.title}'
     r = requests.get(url).json()
