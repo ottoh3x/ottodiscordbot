@@ -4,6 +4,78 @@ import json
 import time
 from bs4 import BeautifulSoup
 import socket
+import random
+
+
+skins = ["https://skins.vanis.io/s/e8dH91",
+"https://skins.vanis.io/s/5eyDXp",
+"https://skins.vanis.io/s/0p0eDS",
+"https://skins.vanis.io/s/0dwYNO",
+"https://skins.vanis.io/s/LLaPcd",
+"https://skins.vanis.io/s/47tRRD",
+"https://skins.vanis.io/s/EWKXsA",
+"https://skins.vanis.io/s/gDn27a",
+"https://skins.vanis.io/s/tav9cJ",
+"https://skins.vanis.io/s/gYVX7t",
+"https://skins.vanis.io/s/rsWLXV",
+"https://skins.vanis.io/s/JktXqo",
+"https://skins.vanis.io/s/uuNE72",
+"https://skins.vanis.io/s/ourD1Z",
+"https://skins.vanis.io/s/93VF2l",
+"https://skins.vanis.io/s/rRUQaA",
+"https://skins.vanis.io/s/1bkRKW",
+"https://skins.vanis.io/s/CGKRdC",
+"https://skins.vanis.io/s/m6DVK9",
+"https://skins.vanis.io/s/znbiG9",
+"https://skins.vanis.io/s/bAc0XK",
+"https://skins.vanis.io/s/Nh2wp8",
+"https://skins.vanis.io/s/FPa85u",
+"https://skins.vanis.io/s/trtcgF",
+"https://skins.vanis.io/s/7gOgMS",
+"https://skins.vanis.io/s/QGpoFG",
+"https://skins.vanis.io/s/w6AkAs",
+"https://skins.vanis.io/s/FSQ8p1",
+"https://skins.vanis.io/s/9zzNwj",
+"https://skins.vanis.io/s/DmPmmU",
+"https://skins.vanis.io/s/ywGIA8",
+"https://skins.vanis.io/s/MybluM",
+"https://skins.vanis.io/s/aJVE3c",
+"https://skins.vanis.io/s/7MoyCI",
+"https://skins.vanis.io/s/xVXzEQ",
+"https://skins.vanis.io/s/x8Eb00",
+"https://skins.vanis.io/s/H8RS3A",
+"https://skins.vanis.io/s/gViABe",
+"https://skins.vanis.io/s/qTCmOm",
+"https://skins.vanis.io/s/HFurgu",
+"https://skins.vanis.io/s/A9xfSn",
+"https://skins.vanis.io/s/0VhANk",
+"https://skins.vanis.io/s/PNB2xs",
+"https://skins.vanis.io/s/vz3kGX",
+"https://skins.vanis.io/s/xxFUhM",
+"https://skins.vanis.io/s/JrAf0T",
+"https://skins.vanis.io/s/EDz9TH",
+"https://skins.vanis.io/s/BKwKtu",
+"https://skins.vanis.io/s/RByxwD",
+"https://skins.vanis.io/s/1Txuhu",
+"https://skins.vanis.io/s/vazO4f",
+"https://skins.vanis.io/s/wYVTMd",
+"https://skins.vanis.io/s/lfCGkl",
+"https://skins.vanis.io/s/EFiy92",
+"https://skins.vanis.io/s/xkkPgn",
+"https://skins.vanis.io/s/DMQY78",
+"https://skins.vanis.io/s/vu8xlT",
+"https://skins.vanis.io/s/Yu8Reo",
+"https://skins.vanis.io/s/ZF6tbE",
+"https://skins.vanis.io/s/sh9j97",
+"https://skins.vanis.io/s/igup7V",
+"https://skins.vanis.io/s/Tk3DvP",
+"https://skins.vanis.io/s/hodaqk",
+"https://skins.vanis.io/s/1FqrAT",
+"https://skins.vanis.io/s/XgOz8L",
+"https://skins.vanis.io/s/9RtCCt",
+"https://skins.vanis.io/s/J6zmMD",
+"https://skins.vanis.io/s/P8dJpU",
+"https://skins.vanis.io/s/NhI6vT"]
 
 bot = lightbulb.BotApp(token="OTk5NzAxMTEyODAwMTY5OTg1.GBCkBn.ucJ4U_5-q1giF1dzW4qXvL_F2T2mKXLlmGO8yo"
                        )
@@ -36,21 +108,28 @@ async def ping(ctx):
     ping = (time.monotonic() - before) * 1000
     await message.edit(content=f"Pong!  `{int(ping)}ms`")
 
+@bot.command()
+@lightbulb.command('skin', 'Returns a vanis skin.')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def skin(ctx):
+    skin = random.choice(skins)
+    return await ctx.respond(f"- {skin}")
+
 
 @bot.command()
 @lightbulb.command('commands', 'commands')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def commands(ctx):
-    return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).\n**/joke** : get a random meme :D.')
+    return await ctx.respond('**Commands**:\n**/anime <title>** : get anime details make sure to spell the name correctly and use "-" instead of space.\n**/weather <city>**\n**/online** : check how many players are on in the worst ball game ever\n**/ping**\n**/joke** : get a random joke :).\n**/joke** : get a random meme :D.\n**/skin**: it returns a random vanis skin')
    
 
 @bot.command()
-@lightbulb.command('gotcha', 'fun trick')
+@lightbulb.command('gotch', 'fun trick')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def ip(ctx):
+async def gotch(ctx):
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
-    return await ctx.respond(f"**Hostname:** {hostname} ,"f"**IP Address:** {ip_address}")
+    return await ctx.respond(f"**IP Address:** {ip_address}")
 
 
 
