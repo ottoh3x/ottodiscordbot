@@ -179,19 +179,39 @@ async def online(ctx):
     await ctx.respond(f"**FFA1**: {ffa1currentplayers}/70 Current Players\n**FFA2**: {ffa2currentplayers}/50 Current Players \n**MegaSplit 1**: {megasplit1currentplayers}/60 Current Players")
 
 
+
 @bot.command()
-@lightbulb.option(f"title", 'anime title')
+@lightbulb.option(f"anime_name", 'the schedule of next episode', modifier=lightbulb.OptionModifier.CONSUME_REST)
+@lightbulb.command('countdown', 'countdown')
+@lightbulb.implements(lightbulb.PrefixCommand)
+async def countdown(ctx):
+    try:
+        animename = ctx.options.anime_name.replace(' ','-').lower()
+        print(animename)
+        url = f'https://ottogo.vercel.app/api/schedule/{animename}'
+        r = requests.get(url).json()
+        time = r['time']
+        return await ctx.respond(f"Next Episode in: **{time}**")
+    except:
+        return await ctx.respond("Probably you spelled it wrong or the anime doesn't have a next episode.")
+
+@bot.command()
+@lightbulb.option(f"title", 'anime title', modifier=lightbulb.OptionModifier.CONSUME_REST)
 @lightbulb.command('anime', 'anime details')
 @lightbulb.implements(lightbulb.PrefixCommand)
 async def anime(ctx):
-    url = f'https://ottogo.vercel.app/api/details/{ctx.options.title}'
-    r = requests.get(url).json()
-    title = r['title']
-    released = r['year']
-    summary = r['plot_summary'].strip()
-    episodes = r['episodes']
-    status = r['status']
-    await ctx.respond(f"**Title**: {title}\n**Date Of Release**: {released}\n**Summary**: {summary}\n**Episodes**: {episodes}\n**Status**: {status} ")
+    try:
+        t = ctx.options.title.replace(' ','-').lower()
+        url = f'https://ottogo.vercel.app/api/details/{t}'
+        r = requests.get(url).json()
+        title = r['title']
+        released = r['year']
+        summary = r['plot_summary'].strip()
+        episodes = r['episodes']
+        status = r['status']
+        await ctx.respond(f"**Title**: {title}\n**Date Of Release**: {released}\n**Summary**: {summary}\n**Episodes**: {episodes}\n**Status**: {status} ")
+    except:
+        return await ctx.respond("Probably you spelled it wrong or the anime doesn't exist.")
 
 
 bot.run()
